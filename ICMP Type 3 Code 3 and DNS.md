@@ -14,7 +14,7 @@ As it can be seen in the Wireshark capture (with different IP, as it's in a lab 
 
 ![alt text](images/ICMP33DNS_wireshark.png "Wireshark ICMP Type 3 Code 3 to DNS request")
 
-Our firewalls block this, and the "No matching connection" message shows that it doesn't realte the DNS request with the ICMP reply. And as the "best practice" says to block all ICMP traffic, here we have it.
+Our firewalls block this, and the **_No matching connection_** message shows that it doesn't realte the DNS request with the ICMP reply. And as the "best practice" says to block all ICMP traffic, here we have it.
 
 So in this case, the solution is: 
 * track the source IP, check if a DNS server (based on the high number of requests) and change is configuration
