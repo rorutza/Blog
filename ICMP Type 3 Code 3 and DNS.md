@@ -18,6 +18,7 @@ Our firewalls block this, and the **_No matching connection_** message shows tha
 
 So in this case, the solution is: 
 * track the source IP, check if a DNS server (based on the high number of requests) and change is configuration
-* identifying what is the destination and why was it configured like this in the first place
+* identifying what is the destination and why was it though a DNS server
+* understand why was this configuration perfomed in the first place
 
-Perfect for spring cleaning the dashboards and the logs :stuck_out_tongue_winking_eye:
+Perfect for spring cleaning dashboards and logs :stuck_out_tongue_winking_eye:
