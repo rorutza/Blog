@@ -8,7 +8,7 @@ What happens in this case is that we are performing DNS queries to IPs that are 
 Apr 22 2018 17:36:12: %ASA-4-313005: No matching connection for ICMP error message: icmp src OUTSIDE:10.10.10.10 dst INSIDE:10.20.20.20 (type 3, code 3) on OUTSIDE interface. Original IP payload: udp src 10.20.20.20/53 dst 10.10.10.10/24750.
 ```
 
-What this actually meas is that 192.168.100.10 does a DNS query to 192.168.300.30 on UDP port 53, and as the port is not open, it replies with a ICMP type 3 code 3 message. This is normal host behavior, to reply wity ICMP Port Unreachable when receiving a request to a closed port. (https://tools.ietf.org/html/rfc792)
+What this actually meas is that 192.168.100.10 does a DNS query to 192.168.300.30 on UDP port 53, and as the port is not open, it replies with a ICMP type 3 code 3 message. This is normal host behavior, to reply with ICMP Port Unreachable when receiving a request to a closed port. (https://tools.ietf.org/html/rfc792)
 
 As it can be seen in the Wireshark capture (with different IP, as it's in a lab environement), in the ICMP reply we have the initial DNS request, as it's also staten in the firewall log.
 
