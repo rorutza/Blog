@@ -1,11 +1,18 @@
-When first starting to do centralized logging for a network is surprizing to see how much cleaning has to be done: from poorly disinged apps, to old and miscofiguration.
-One of the most common is to see DNS denies traffic on firewall logs. And most of it actually ICMP Destination Unreachable, Port Unreachable. 
+When first starting to do centralized logging for a network is surprizing to see how much cleaning has to be done: from poorly disigned apps, to old and miscofiguration, etc.
+
+One of the most common is to see **DNS denied traffic** on firewall logs. And most of it actually **ICMP Destination Unreachable, Port Unreachable**. 
 
 What happens in this case is that we are performing DNS queries to IPs that are not actually DNS servers, or were and have been decomissioned. As we are guilty of not always cleaning up the coonfigurations after this king of changes, we end up with seeing many (many many depending on the network size) logs like this:
 
-Apr 22 2018 17:36:12: %ASA-4-313005: No matching connection for ICMP error message: icmp src OUTSIDE:192.168.300.30 dst INSIDE:192.168.200.20 (type 3, code 3) on OUTSIDE interface. Original IP payload: udp src 192.168.300.30/53 dst 192.168.300.30/24750.
+```
+Apr 22 2018 17:36:12: %ASA-4-313005: No matching connection for ICMP error message: icmp src OUTSIDE:10.10.10.10 dst INSIDE:10.20.20.20 (type 3, code 3) on OUTSIDE interface. Original IP payload: udp src 10.20.20.20/53 dst 10.10.10.10/24750.
+```
 
 What this actually meas is that 192.168.100.10 does a DNS query to 192.168.300.30 on UDP port 53, and as the port is not open, it replies with a ICMP type 3 code 3 message. (https://tools.ietf.org/html/rfc792)
+
+As it can be seen in the Wireshark capture (with different IP, as it's in a lab environement), in the ICMP reply we have the initial DNS request, as it's also staten in the firewall log.
+
+
 
 Our firewalls block this, and the "No matching connection" message shows that it doesn't realte the DNS request with the ICMP reply. And as the "best practice" says to block all ICMP traffic, here we have it.
 
