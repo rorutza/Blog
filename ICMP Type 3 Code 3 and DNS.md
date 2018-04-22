@@ -12,7 +12,7 @@ What this actually meas is that 192.168.100.10 does a DNS query to 192.168.300.3
 
 As it can be seen in the Wireshark capture (with different IP, as it's in a lab environement), in the ICMP reply we have the initial DNS request, as it's also staten in the firewall log.
 
-
+![alt text](images/ICMP33DNS_wireshark.png "Wireshark ICMP Type 3 Code 3 to DNS request")
 
 Our firewalls block this, and the "No matching connection" message shows that it doesn't realte the DNS request with the ICMP reply. And as the "best practice" says to block all ICMP traffic, here we have it.
 
