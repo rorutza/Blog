@@ -1,16 +1,16 @@
 When first starting to do centralized logging for a network is surprizing to see how much cleaning has to be done: from poorly disigned apps, to old and miscofiguration, etc.
 
-One of the most common is to see **DNS denied traffic** on firewall logs. And most of it actually **ICMP Destination Unreachable, Port Unreachable**. 
+One of the most common is to see **DNS denied traffic** on firewall logs. And most of it is actually **ICMP Destination Unreachable, Port Unreachable**. 
 
-What happens in this case is that we are performing DNS queries to IPs that are not actually DNS servers, or were and have been decomissioned. As we are guilty of not always cleaning up the coonfigurations after this king of changes, we end up with seeing many (many many depending on the network size) logs like this:
+What happens in this case is that we are performing DNS queries to IPs that are not actually DNS servers (don't have port 53 opened), or were and have been decomissioned. As we are guilty of not always cleaning up the coonfigurations after this king of changes, we end up with seeing many (many many depending on the network size) logs like this:
 
 ```
-Apr 22 2018 17:36:12: %ASA-4-313005: No matching connection for ICMP error message: icmp src OUTSIDE:10.10.10.10 dst INSIDE:10.20.20.20 (type 3, code 3) on OUTSIDE interface. Original IP payload: udp src 10.20.20.20/53 dst 10.10.10.10/24750.
+Apr 22 2018 17:36:12: %ASA-4-313005: No matching connection for ICMP error message: icmp src OUTSIDE:10.10.10.10 dst INSIDE:10.20.20.20 (type 3, code 3) on OUTSIDE interface. Original IP payload: udp src 10.20.20.20/24859 dst 10.10.10.10/53.
 ```
 
-What this actually meas is that 192.168.100.10 does a DNS query to 192.168.300.30 on UDP port 53, and as the port is not open, it replies with a ICMP type 3 code 3 message. This is normal host behavior, to reply with ICMP Port Unreachable when receiving a request to a closed port. (https://tools.ietf.org/html/rfc792)
+What this actually means is that 10.20.20.20 does a DNS query to 10.10.10.10 on UDP port 53, and as the port is not open, it replies with a ICMP type 3 code 3 message. This is normal host behavior, to reply with ICMP Port Unreachable when receiving a request to a closed port. (https://tools.ietf.org/html/rfc792)
 
-As it can be seen in the Wireshark capture (with different IP, as it's in a lab environement), in the ICMP reply we have the initial DNS request, as it's also staten in the firewall log.
+As it can be seen in the Wireshark capture (with different IP, as it's in a lab environement), in the ICMP reply we have the initial DNS request, as it's also showed in the firewall log.
 
 ![alt text](images/ICMP33DNS_wireshark.png "Wireshark ICMP Type 3 Code 3 to DNS request")
 
