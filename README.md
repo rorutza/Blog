@@ -1,2 +1,2 @@
 # Blog
-Easy leassons learned.
+Easy lessons learned.
