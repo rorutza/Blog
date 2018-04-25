@@ -16,6 +16,8 @@ As it can be seen in the Wireshark capture (with different IP, as it's in a lab 
 
 Our firewalls block this, and the **_No matching connection_** message shows that it doesn't relate the DNS request with the ICMP reply. And as the "best practice" says to block all ICMP traffic, here we have it.
 
+Also another detected case we need to take into account is that sometimes when the reply arrives the port can be already closed (delay, etc.), so the DNS server will also reply with Port Unreachable.  
+
 So in this case, the solution is: 
 * track the source IP, check if a DNS server (based on the high number of requests) and change is configuration
 * identifying what is the destination and why was it though a DNS server
