@@ -1,6 +1,10 @@
 Every domain has a bible we always hear about. When I was yound and starting into networking, too many years ago, we were all talking about [*Tanenbaum's Computer Networks*](https://www.amazon.com/Computer-Networks-4th-Andrew-Tanenbaum/dp/0130661023/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=55BYF0116DMXVHFS1CA9) as the Networking Bible.
 On those times I even knew at what page is concept was. And of course, one that gave everyoane some head ackes, was the *TCP Sliding Window Mechanism*. It has its own chapter. 
 
+<p align="center">
+  <img width="460" height="300" src="https://github.com/rorutza/Blog/blob/master/images/ComputerNetworks.png">
+</p>
+
 ![alt text](images/ComputerNetworks.png "Tanenbaum Computer Networks")
 
 But in practice, there's something more to it than just RTTs and ACKs. Now knowing this, and Googling a little, it's very easy to arrive to all the RFCs or other explanations from vendors or other blogs.  But for me, some years ago, it all started with: **_The webapp is slow_**. The web app was actually uploading/downloading some large PDFs and it was getting slower and slower until completly stopping. 
