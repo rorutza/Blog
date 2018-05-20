@@ -9,11 +9,15 @@ But in practice, there's something more to it than just RTTs and ACKs. Now knowi
 
 So we put Wireshark on the web server, of course, and we've seen as the Windows size was decreasing and decreasing untill arriving to **0** (zero). That explained what the users were experiencing, but why?
 
-![alt text](images/WindowSize0.png "Wireshark TCP Window Size 0")
+<p align="center">
+  <img alt="Wireshark TCP Window Size 0" src="https://github.com/rorutza/Blog/blob/master/images/WindowSize0.png">
+</p>
 
 Seems that this was happening only with some particular accesses that were crossing some weird WAN links, with a lower MTU. And here we enter the world of [_RFC 1191: Path MTU Discovery_](http://www.ietf.org/rfc/rfc1191.txt). Basically the mechanism of determining the MTU for an internet path. And this uses ICMP messages to determine the maximum trasmission unit, in particular **Type 3 Code 4: Fragmentation Needed and Don't Fragment was Set**, which informs the source that the packets have to be fragmented to cross the link.
 
-![alt text](images/ICMP34.png "Wireshark ICMP Type 3 Code 4")
+<p align="center">
+  <img alt="Wireshark ICMP Type 3 Code 4" src="https://github.com/rorutza/Blog/blob/master/images/ICMP34.png ">
+</p>
 
 So this was not a Layer 4 window size problem. The actual problem was that the frames were to big to cross the links, but that information was not being received. Also the packets did not have the _Fragment_ bit set, what the ICMP was actually asking the source to do.
 
