@@ -2,7 +2,7 @@ Every domain has a bible we always hear about. When I was yound and starting int
 On those times I even knew at what page is concept was. And of course, one that gave everyoane some head ackes, was the *TCP Sliding Window Mechanism*. It has its own chapter. 
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/rorutza/Blog/blob/master/images/ComputerNetworks.png">
+  <img src="https://github.com/rorutza/Blog/blob/master/images/ComputerNetworks.png">
 </p>
 
 ![alt text](images/ComputerNetworks.png "Tanenbaum Computer Networks")
