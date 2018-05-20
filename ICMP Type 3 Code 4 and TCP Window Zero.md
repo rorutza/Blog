@@ -5,7 +5,7 @@ But in practice, there's something more to it than just RTTs and ACKs. Now knowi
 
 So we put Wireshark on the web server, of course, and we've seen as the Windows size was decreasing and decreasing untill arriving to **0** (zero). That explained what the users were experiencing, but why?
 
-Seems that this was happening only with some particular accesses that were crossing some weird WAN links, with a lower MTU. And here we enter the world of _RFC 1191: Path MTU Discovery_. Basically the mechanism of determining the MTU for an internet path. And this uses ICMP messages to determine the maximum trasmission unit, in particular **Type 3 Code 4: Fragmentation Needed and Don't Fragment was Set**, which informs the source that the packets have to be fragmented to cross the link.
+Seems that this was happening only with some particular accesses that were crossing some weird WAN links, with a lower MTU. And here we enter the world of [_RFC 1191: Path MTU Discovery_](http://www.ietf.org/rfc/rfc1191.txt). Basically the mechanism of determining the MTU for an internet path. And this uses ICMP messages to determine the maximum trasmission unit, in particular **Type 3 Code 4: Fragmentation Needed and Don't Fragment was Set**, which informs the source that the packets have to be fragmented to cross the link.
 
 ![alt text](images/ICMP34.png "Wireshark ICMP Type 3 Code 4")
 
@@ -15,6 +15,6 @@ As we were following best practices, of blocking **ALL** ICMP, of course those m
 
 If you see many ICMP Type 3 Code 4 denied by the firewalls, it means that on the path there is a link with a lower MTU and users have problems with high volume transfer. 
 
-The solution to this problem and many other weird TCP/IP behaviours, is to allow ICMP Type 3 even on the boarder. In the end, the important part in ICMP is the **C** and is not just the _ping_ protocol, it’s a very useful Control mechanism.
+The solution to this problem and many other weird TCP/IP behaviours, is to **allow ICMP Type 3 even on the perimeter**. In the end, the important part in ICMP is the **C** and is not just the _ping_ protocol, it’s a very useful Control mechanism.
 
 Cisco’s [ASA configuration guide](https://www.cisco.com/c/en/us/td/docs/security/asa/asa84/configuration/guide/asa_84_cli_config/access_management.html#wp1268102) also recommends allowing ICMP Type 3: 
