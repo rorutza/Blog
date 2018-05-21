@@ -1,5 +1,5 @@
 Every domain has a bible we always hear about and read cover to cover. When I was young and starting into networking, too many years ago, we were all talking about [*Tanenbaum's Computer Networks*](https://www.amazon.com/Computer-Networks-4th-Andrew-Tanenbaum/dp/0130661023/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=55BYF0116DMXVHFS1CA9) as the Networking Bible.
-On those times I even knew at what page each concept was. And, of course, one that gave everyoane some headaches, was the *TCP Sliding Window Mechanism*. It has its own chapter. 
+On those times I even knew at what page each concept was. And, of course, one that gave everyone some headaches, was the *TCP Sliding Window Mechanism*. It has its own chapter. 
 
 <p align="center">
   <img alt="Tanenbaum Computer Networks" src="https://github.com/rorutza/Blog/blob/master/images/ComputerNetworks.png">
